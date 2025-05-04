@@ -6,13 +6,13 @@ on:
         branches:
             -   main
         paths:
-            -   "lambda/"
+            -   "lambda/**"
 
 jobs: 
     deploy-lambda: # Name of job
         runs-on: ubuntu-latest # Sets/specifies the runner
         steps: 
-            -   uses: acions/checkout@v2
+            -   uses: actions/checkout@v2
 
             -   name: Set Up Python # Sets up out python environment
                 uses: actions/setup-python@v2
@@ -28,7 +28,7 @@ jobs:
                 uses: aws-actions/configure-aws-credentials@v1
                 with:
                     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                    aws-secret-access-key: ${{ secrets.AWS_SECREY_ACESS_KEY }}
+                    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                     aws-region: ca-central-1
                     
             -   name: Deploy to AWS Lambda # Zips lambda directory and updates lambda function
