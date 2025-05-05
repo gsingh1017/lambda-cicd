@@ -4,13 +4,18 @@ on:
     pull_request:
         paths:
             -   "cloudformation/**"
+        types: 
+            -   opened
+            -   synchronize
+            -   reopened
+            -   closed
 
 permissions:
     pull-requests: write
     contents: read
 
 jobs: 
-    valicate-cfn: 
+    validate-cfn: 
         runs-on: ubuntu-latest
         if: github.event.pull_request.merged != true
         steps:
